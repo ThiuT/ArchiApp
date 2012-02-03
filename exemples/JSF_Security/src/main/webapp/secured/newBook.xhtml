@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Creates a new book</title>
+    </h:head>
+    <h:body>
+        <ul>
+            <li><h:outputText value="Bienvenue #{securityController.connectedUserid}"/></li>
+            <li><h:form><h:commandLink action="#{securityController.logout}" value="Se d&eacute;connecter"/></h:form></li>
+        </ul>
+        <hr/>
+        <h1>Create a new book</h1>
+        <hr/>
+        <h:form>
+            <h:panelGrid columns="3">
+                <h:outputLabel value="ISBN : "/>
+                <h:inputText id="isbn" value="#{bookController.book.isbn}" required="true"/>
+                <h:message for="isbn"/>
+
+                <h:outputLabel value="Titre :"/>
+                <h:inputText id="title" value="#{bookController.book.title}"/>
+                <h:message for="title"/>
+
+                <h:outputLabel value="Prix : "/>
+                <h:inputText id="price" value="#{bookController.book.price}"/>
+                <h:message for="price"/>
+
+                <h:outputLabel value="Description  : "/>
+                <h:inputTextarea id="description" value="#{bookController.book.description}" cols="20" rows="5"/>
+                <h:message for="description"/>
+
+                <h:outputLabel value="Nombre de pages : "/>
+                <h:inputText id="nbofpages" value="#{bookController.book.nbOfPage}"/>
+                <h:message for="nbofpages"/>
+            </h:panelGrid>
+
+            <h:commandButton value="Create a book" rendered="#{securityController.connectedUserIsAdmin}" action="#{bookController.doCreate}"/>
+
+        </h:form>
+
+        <h:form>
+            <h:commandButton value="Cancel" action="listBooks.xhtml"/>
+        </h:form>
+        <hr/>
+    </h:body>
+</html>

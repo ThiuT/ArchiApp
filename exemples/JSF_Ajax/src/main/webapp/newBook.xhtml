@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Nouveau livre</title>
+    </h:head>
+    <h:body>
+        <h:outputScript name="jsf.js" library="javax.faces" target="head"/>
+        <h1>Nouveau livre</h1>
+        <hr/>
+
+        <h:form id="form" prependId="false">
+            <h:panelGrid columns="2">
+                <h:outputLabel value="ISBN : "/>
+                <h:inputText value="#{bookController.book.isbn}" required="true"/>
+
+                <h:outputLabel value="Titre :"/>
+                <h:inputText value="#{bookController.book.title}"/>
+
+                <h:outputLabel value="Prix : "/>
+                <h:inputText value="#{bookController.book.price}"/>
+
+                <h:outputLabel value="Description  : "/>
+                <h:inputTextarea value="#{bookController.book.description}" cols="20" rows="5"/>
+
+                <h:outputLabel value="Nombre de pages : "/>
+                <h:inputText value="#{bookController.book.nbOfPage}"/>
+            </h:panelGrid>
+
+            <h:commandButton value="Créer" action="#{bookController.doCreate}">
+                <f:ajax execute="form" render=":listForm:booklist :form"/>
+            </h:commandButton>
+        </h:form>
+
+        <hr/>
+
+        <h1>Liste des livres</h1>
+        <hr/>
+
+        <h:form id="listForm" >
+            <h:dataTable id="booklist" value="#{bookController.bookList}" var="bk" border="1">
+                <h:column>
+                    <h:selectBooleanCheckbox value="#{bk.selected}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.isbn}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Titre"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.title}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Prix"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.price}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Description"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.description}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nb pages"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.nbOfPage}" />
+                </h:column>
+            </h:dataTable>
+
+            <h:commandButton value="Supprimer la s&eacute;lection" action="#{bookController.doDelete}">
+                <f:ajax execute=":listForm" render=":listForm"/>
+            </h:commandButton>
+        </h:form>
+    </h:body>
+</html>

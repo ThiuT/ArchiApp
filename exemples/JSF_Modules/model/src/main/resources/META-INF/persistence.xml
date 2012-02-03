@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
+  <persistence-unit name="jsfExamplePU" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>jdbc/sample</jta-data-source>
+    <class>fr.univmed.jeecourse.jsfexample.model.Book</class>
+    <properties>
+      <property name="eclipselink.target-database" value="DERBY"/>
+      <!--property name="eclipselink.ddl-generation" value="update"/-->
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.logging.level" value="FINEST"/>
+      <!--
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/JSFExample;create=true"/>
+      -->
+      <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>-->
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby:chapter10DB;create=true"/>-->
+      <!--
+      <property name="javax.persistence.jdbc.user" value="APP"/>
+      <property name="javax.persistence.jdbc.password" value="APP"/>
+      -->
+    </properties>
+  </persistence-unit>
+</persistence>

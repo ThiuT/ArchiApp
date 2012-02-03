@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+        <ui:composition>
+            <!-- #menu: the main large box site menu -->
+            <div id="menu" class="width">
+
+                <ul>
+                    <li>
+                        <h:outputLink value="../views_orders/orders.xhtml" onfocus="blur()">
+                            <span class="title ">Orders</span>
+                            <span class="desc">3 colonnes</span>
+                        </h:outputLink>
+                    </li>
+                    <li>
+                        <h:outputLink value="../views_reports/reports.xhtml" onfocus="blur()">
+                            <span class="title ">Reports</span>
+                            <span class="desc style3">2 colonnes b</span>
+                        </h:outputLink>
+                    </li>
+                    <li>
+                        <h:outputLink value="../views_products/products.xhtml" onfocus="blur()">
+                            <span class="title ">Products</span>
+                            <span class="desc">2 colonnes a</span>
+                        </h:outputLink>
+                    </li>
+                    <li>
+                        <h:outputLink value="../views_users/users.xhtml" onfocus="blur()">
+                            <span class="title ">Users</span>
+                            <span class="desc">1 colonne</span>
+                        </h:outputLink>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- #menu end -->
+        </ui:composition>
+    </h:body>
+</html>
+

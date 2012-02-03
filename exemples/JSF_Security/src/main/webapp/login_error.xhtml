@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <title>TODO supply a title</title>
+    </head>
+    <body>
+        <center><h2>Identification</h2></center>
+        <br/>
+        <center><h3 style="color: red;">Echec lors de la connexion</h3></center>
+        <center>
+            <form method="post" action="j_security_check" >
+                <table>
+                    <tr>
+                        <td>Nom d'utilisateur :</td>
+                        <td><input type="text" name="j_username" /></td>
+                    </tr>
+                    <tr>
+                        <td>Mot de passe :</td>
+                        <td><input type="password" name="j_password" /></td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="reset" name="reset" value="R&eacute;initialiser" />
+                            <input type="submit" name="submit" value="Connexion" /></td>
+                    </tr>
+                </table>
+            </form>
+        </center>
+        <br/>
+    </body>
+</html>

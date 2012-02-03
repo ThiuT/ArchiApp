@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Liste des livres</title>
+    </h:head>
+
+    <h:body>
+        <h3>Liste des livres</h3>
+        <hr/>
+
+
+        <h:form>
+            <p:growl id="growl" showDetail="true"/>
+
+            <p:dataTable var="bk" value="#{bookController.bookList}" paginator="true" rows="10"
+                         selection="#{bookController.selectedBook}" selectionMode="single"
+                         rowSelectListener="#{bookController.onRowSelect}"
+                         onRowSelectUpdate="display growl"
+                         onRowSelectComplete="bookDialog.show()"
+                         rowUnselectListener="#{bookController.onRowUnselect}"
+                         onRowUnselectUpdate="growl" >
+
+                <f:facet name="header">
+                    S&eacute;lectionner un livre
+                </f:facet>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN" />
+                    </f:facet>
+                    <h:outputText value="#{bk.isbn}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Titre" />
+                    </f:facet>
+                    <h:outputText value="#{bk.title}" />
+                </p:column>
+
+            </p:dataTable>
+
+            <p:dialog header="D&eacute;tail d'un livre" widgetVar="bookDialog" resizable="false"
+                      width="200" showEffect="explode" hideEffect="explode">
+
+                <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                    <h:outputText value="ISBN :" />
+                    <h:outputText value="#{bookController.selectedBook.isbn}" />
+
+                    <h:outputText value="Titre :" />
+                    <h:outputText value="#{bookController.selectedBook.title}" />
+
+                </h:panelGrid>
+            </p:dialog>
+
+        </h:form>
+        <hr/>
+    </h:body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <h:body>
+        <ui:composition>
+            <!-- #footer: holds the site footer (logo and links) -->
+            <div id="footer">
+
+                <!-- #bg: applies the site width and footer background -->
+                <div id="bg" class="width">
+
+                    <h:graphicImage library="images" name="logo.gif" alt="Your logo goes here"/>
+
+                    <ul>
+                        <li><h:outputLink value="">Sitemap</h:outputLink></li>
+                        <li><h:outputLink value="">Register</h:outputLink></li>
+                        <li><h:outputLink value="">Design inspired by</h:outputLink></li>
+                        <li><h:outputLink value="http://www.studio7designs.com" styleClass="last">studio7designs.com</h:outputLink></li>
+                    </ul>
+
+                </div>
+                <!-- #bg end -->
+
+            </div>
+            <!-- #footer end -->
+        </ui:composition>
+    </h:body>
+</html>
+

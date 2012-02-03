@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <script type="text/javascript" language="javascript">
+            function confirmDelete(){
+                if (confirm("Voulez-vous supprimmer le(s) livre(s) s&eacute;lectionn&eacute;(s) ?"))
+                    return true;
+                return false;
+            }
+        </script>
+
+
+        <title>List des livres</title>
+    </h:head>
+    <h:body>
+        <h1>Liste des livres</h1>
+        <hr/>
+        <h:form>
+            <h:dataTable value="#{bookController.bookList}" var="bk" border="1">
+                <h:column>
+                    <h:selectBooleanCheckbox value="#{bk.selected}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="ISBN"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.isbn}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Titre"/>
+                    </f:facet>
+                    <h:commandLink action="#{bookController.doEdit}" value="#{bk.title}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="pages"/>
+                    </f:facet>
+                    <h:outputText value="#{bk.nbOfPage}"/>
+                </h:column> 
+            </h:dataTable>
+
+            <h:commandLink action="#{bookController.doNew}">Nouveau livre</h:commandLink>
+            <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+            <h:commandLink action="#{bookController.doDelete}" onclick="return confirmDelete();">Supprimer la s&eacute;lection</h:commandLink>
+        </h:form>
+        <hr/>
+    </h:body>
+</html>

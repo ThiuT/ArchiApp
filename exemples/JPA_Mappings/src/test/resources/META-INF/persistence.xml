@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence">
+  <persistence-unit name="samplePU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <mapping-file>META-INF/book_mapping.xml</mapping-file>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex01.Address</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex02.NewsEmbeddedId</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex03.NewsIdClass</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex04.Track</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex05.BookCustomized</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex06.Customer</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex07.CreditCard</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex08.BookTagged</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex09.CD</class>
+    <class>fr.univmed.jeecourse.jpamapping.elementary.ex10.CustomerAccess</class>
+    <class>fr.univmed.jeecourse.jpamapping.embeddable.ex01.CustomerEmbed01</class>
+    <class>fr.univmed.jeecourse.jpamapping.embeddable.ex01.AddressEmbed01</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex01.Book01</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex01.CD01</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex01.Item01</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex02.Book02</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex02.CD02</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex02.Item02</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex03.Book03</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex03.CD03</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex03.Item03</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex04.Book04</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex04.CD04</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex04.Item04</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex05.Book05</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex06.Book06</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex06.Item06</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex07.Book07</class>
+    <class>fr.univmed.jeecourse.jpamapping.inheritance.ex07.Item07</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex01.Address12</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex01.Customer12</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex02.Address13</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex02.Customer13</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex03.Order14</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex03.OrderLine14</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex03fk.Order14Fk</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex03fk.OrderLine14Fk</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex04.CD15</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex04.Artist15</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex05.Address16</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex05.Country16</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex10.Comment10</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex10.News10</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex11.Comment11</class>
+    <class>fr.univmed.jeecourse.jpamapping.relationship.ex11.News11</class>
+    <class>fr.univmed.jeecourse.jpamapping.simple.ex01.Book</class>
+    <class>fr.univmed.jeecourse.jpamapping.xml.ex01.BookXML</class>
+    <properties>
+      <property name="eclipselink.target-database" value="DERBY"/>
+      <!-- Embedded mode -->
+      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:derby:chapter03DB;create=true"/>
+      <!-- Client Server mode -->
+      <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>-->
+      <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/chapter03DB;create=true"/>-->
+      <property name="javax.persistence.jdbc.user" value="APP"/>
+      <property name="javax.persistence.jdbc.password" value="APP"/>
+      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="eclipselink.logging.level" value="INFO"/>
+    </properties>
+  </persistence-unit>
+</persistence>

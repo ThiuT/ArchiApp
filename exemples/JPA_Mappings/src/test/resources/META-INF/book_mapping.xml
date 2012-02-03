@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" version="1.0">
+
+    <entity class="fr.univmed.jeecourse.jpamapping.xml.ex01.BookXML">
+        <table name="xml_01_book_xml_mapping"/>
+        <attributes>
+            <basic name="title">
+                <column name="book_title" nullable="false" updatable="false"/>
+            </basic>
+            <basic name="description">
+                <column length="2000"/>
+            </basic>
+            <basic name="nbOfPage">
+                <column name="nb_of_page" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+
+</entity-mappings>

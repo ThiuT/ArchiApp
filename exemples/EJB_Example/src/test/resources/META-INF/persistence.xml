@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+
+    <persistence-unit name="chapter04PU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>com.apress.javaee6.chapter06.Book</class>
+         <properties>
+            <property name="eclipselink.target-database" value="DERBY"/>
+            <property name="eclipselink.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:derby:chapter06DB;create=true"/>
+            <property name="eclipselink.jdbc.user" value="APP"/>
+            <property name="eclipselink.jdbc.password" value="APP"/>
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+        </properties>
+    </persistence-unit>
+</persistence>        

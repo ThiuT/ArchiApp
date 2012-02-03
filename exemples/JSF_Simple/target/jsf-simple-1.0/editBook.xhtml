@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Edit a book</title>
+</h:head>
+<h:body>
+    <h1>Edit a book</h1>
+    <hr/>
+    <h:form>
+        <table border="0">
+            <tr>
+                <td><h:outputLabel value="ISBN : "/></td>
+                <td><h:inputText value="#{bookController.book.isbn}" required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel value="Title :"/></td>
+                <td><h:inputText value="#{bookController.book.title}"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel value="Price : "/></td>
+                <td><h:inputText value="#{bookController.book.price}"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel value="Description  : "/></td>
+                <td><h:inputTextarea value="#{bookController.book.description}" cols="20" rows="5"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel value="Number of pages : "/></td>
+                <td><h:inputText value="#{bookController.book.nbOfPage}"/></td>
+            </tr>
+        </table>
+
+        <h:commandButton value="Sauver" action="#{bookController.doSave}"/>
+
+    </h:form>
+    <h:form>
+        <h:commandButton value="Annuler" action="#{bookController.doCancel}"/>
+    </h:form>
+    <hr/>
+</h:body>
+</html>
