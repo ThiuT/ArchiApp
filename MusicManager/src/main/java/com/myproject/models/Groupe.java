@@ -24,7 +24,7 @@ public class Groupe implements Serializable {
     @Column
     private String style;
     @JoinColumn(nullable = false)
-    @ManyToOne
+    @OneToOne
     private Musicien leader;
     @Transient
     private Boolean selected;

@@ -6,48 +6,83 @@
     <h:head>
         <script type="text/javascript" language="javascript">
             function confirmDelete(){
-                if (confirm("Voulez-vous supprimmer le(s) créneau(x) s&eacute;lectionn&eacute;(s) ?"))
+                if (confirm("Voulez-vous supprimmer le(s) musicien(s) s&eacute;lectionn&eacute;(s) ?"))
                     return true;
                 return false;
             }
         </script>
 
 
-        <title>Planning</title>
+        <title>Membres</title>
     </h:head>
     <h:body>
-        <h1>Planning</h1>
+        <h1>Membres</h1>
         <hr/>
         <h:form>
-            <h:dataTable value="#{planningController.CList}" var="c" border="1">
+            <h:dataTable value="#{musicienController.CList}" var="c" border="1">
                 <h:column>
                     <h:selectBooleanCheckbox value="#{c.selected}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Semaine"/>
+                        <h:outputText value="Nom"/>
                     </f:facet>
-                    <h:outputText value="#{c.semaine}"/>
+                    <h:outputText value="#{c.nom}"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Jour"/>
+                        <h:outputText value="Prénom"/>
                     </f:facet>
-                    <h:commandLink action="#{planningController.doEdit}" value="#{c.jour}" />
+                    <h:commandLink action="#{musicienController.doEdit}" value="#{c.prenom}" />
                 </h:column>0
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Horaire"/>
+                        <h:outputText value="Instrument(s)"/>
                     </f:facet>
-                    <h:outputText value="#{c.heure}"/>
+                    <h:outputText value="#{c.instrument}"/>
                 </h:column> 
             </h:dataTable>
 
-            <h:commandLink action="#{planningController.doNew}">Nouveau créneau</h:commandLink>
+            <h:commandLink action="#{musicienController.doNew}">Nouveau musicien</h:commandLink>
             <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
-            <h:commandLink action="#{planningController.doDelete}" onclick="return confirmDelete();">Supprimer la s&eacute;lection</h:commandLink>
+            <h:commandLink action="#{musicienController.doDelete}" onclick="return confirmDelete();">Supprimer la s&eacute;lection</h:commandLink>
+        </h:form>
+        <hr/>
+        
+        <h1>Groupes</h1>
+        <hr/>
+        <h:form>
+            <h:dataTable value="#{groupeController.CList}" var="g" border="1">
+                <h:column>
+                    <h:selectBooleanCheckbox value="#{g.selected}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nom"/>
+                    </f:facet>
+                    <h:outputText value="#{g.nom}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Style"/>
+                    </f:facet>
+                    <h:commandLink action="#{groupeController.doEdit}" value="#{g.style}" />
+                </h:column>0
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Leader"/>
+                    </f:facet>
+                    <h:outputText value="#{g.leader}"/>
+                </h:column> 
+            </h:dataTable>
+
+            <h:commandLink action="#{groupeController.doNew}">Nouveau groupe</h:commandLink>
+            <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
+            <h:commandLink action="#{groupeController.doDelete}" onclick="return confirmDelete();">Supprimer la s&eacute;lection</h:commandLink>
         </h:form>
         <hr/>
     </h:body>

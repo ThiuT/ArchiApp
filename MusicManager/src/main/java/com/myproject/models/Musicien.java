@@ -112,7 +112,7 @@ public class Musicien implements Serializable {
 
     @Override
     public String toString() {
-        return "com.myproject.models.Musicien[ id=" + id + " ]";
+        return nom + " " + prenom;
     }
     
 }

@@ -4,11 +4,9 @@ import com.myproject.business.MusicienEJB;
 import com.myproject.models.Musicien;
 import javax.faces.bean.ManagedBean;
 import javax.ejb.EJB;
-import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
-import javax.faces.model.ListDataModel;
 
 
 @ManagedBean
@@ -25,10 +23,10 @@ public class MusicienController {
     private HtmlDataTable dataTable;
 
     private Musicien musicien = new Musicien();
-    private ListDataModel cList; // j'ai utilisé un ListDataModel et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
-
+    private List<Musicien> cList; // j'ai utilisé un ListDataModel et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
+    
     private void updateCList() {
-        cList = new ListDataModel(musicienEJB.findAll());
+        cList = musicienEJB.findAll();
     }
 
     // ======================================
@@ -42,36 +40,27 @@ public class MusicienController {
 
     public String doCreate() {
         musicien = musicienEJB.create(musicien);
-        return "planning.xhtml";
+        return "membres.xhtml";
     }
     
     public String doCancel() {
-        return "planning.xhtml";
+        return "membres.xhtml";
     }
 
     public String doDelete() {
-        List<Musicien> Musiciens = (List<Musicien>)cList.getWrappedData();
-        musicienEJB.delete(onlySelected(Musiciens));
+        musicienEJB.delete(cList);
         updateCList();
-        return "planning.xhtml";
-    }
-
-    private List<Musicien> onlySelected(List<Musicien> list) {
-        for (Iterator<Musicien> it = list.iterator(); it.hasNext(); ) {
-            if (!(it.next().isSelected()))
-                it.remove();
-        }
-        return list;
+        return "membres.xhtml";
     }
 
     public String doEdit() {
-        musicien = (Musicien)cList.getRowData(); // Voici comment on trouve le livre sélectionné
+//        musicien = (Musicien)cList.getRowData(); // Voici comment on trouve le livre sélectionné
         return "editMusicien.xhtml";
     }
 
     public String doSave() {
         musicien = musicienEJB.update(musicien);
-        return "planning.xhtml";
+        return "membres.xhtml";
     }
     // ======================================
     // =          Getters & Setters         =
@@ -85,12 +74,12 @@ public class MusicienController {
         this.musicien = c;
     }
 
-    public ListDataModel getCList() {
+    public List<Musicien> getCList() {
         updateCList();
         return cList;
     }
 
-    public void setCList(ListDataModel cList) {
+    public void setCList(List<Musicien> cList) {
         this.cList = cList;
     }
 
@@ -101,6 +90,4 @@ public class MusicienController {
     public void setDataTable(HtmlDataTable dataTable) {
         this.dataTable = dataTable;
     }
-
-    
 }

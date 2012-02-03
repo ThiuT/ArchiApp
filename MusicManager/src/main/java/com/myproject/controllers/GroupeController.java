@@ -1,7 +1,9 @@
 package com.myproject.controllers;
 
 import com.myproject.business.GroupeEJB;
+import com.myproject.business.MusicienEJB;
 import com.myproject.models.Groupe;
+import com.myproject.models.Musicien;
 import javax.faces.bean.ManagedBean;
 import javax.ejb.EJB;
 import java.util.Iterator;
@@ -21,11 +23,16 @@ public class GroupeController {
 
     @EJB
     private GroupeEJB groupeEJB;
+    @EJB
+    private MusicienEJB musicienEJB;
 
     private HtmlDataTable dataTable;
 
-    private Groupe Groupe = new Groupe();
+    private Groupe groupe = new Groupe();
     private ListDataModel cList; // j'ai utilisé un ListDataModel et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
+
+
+    private long selectedMusicienId;
 
     private void updateCList() {
         cList = new ListDataModel(groupeEJB.findAll());
@@ -36,24 +43,24 @@ public class GroupeController {
     // ======================================
 
     public String doNew() {
-        Groupe = new Groupe();
+        groupe = new Groupe();
         return "newGroupe.xhtml";
     }
 
     public String doCreate() {
-        Groupe = groupeEJB.create(Groupe);
-        return "planning.xhtml";
+        groupe = groupeEJB.create(groupe);
+        return "membres.xhtml";
     }
     
     public String doCancel() {
-        return "planning.xhtml";
+        return "membres.xhtml";
     }
 
     public String doDelete() {
         List<Groupe> Groupes = (List<Groupe>)cList.getWrappedData();
         groupeEJB.delete(onlySelected(Groupes));
         updateCList();
-        return "planning.xhtml";
+        return "membres.xhtml";
     }
 
     private List<Groupe> onlySelected(List<Groupe> list) {
@@ -65,24 +72,26 @@ public class GroupeController {
     }
 
     public String doEdit() {
-        Groupe = (Groupe)cList.getRowData(); // Voici comment on trouve le livre sélectionné
+        groupe = (Groupe)cList.getRowData(); // Voici comment on trouve le livre sélectionné
         return "editGroupe.xhtml";
     }
 
     public String doSave() {
-        Groupe = groupeEJB.update(Groupe);
-        return "planning.xhtml";
+        Musicien selectedLeader= musicienEJB.findById(selectedMusicienId);
+        groupe.setLeader(selectedLeader);
+        groupe = groupeEJB.update(groupe);
+        return "membres.xhtml";
     }
     // ======================================
     // =          Getters & Setters         =
     // ======================================
 
     public Groupe getGroupe() {
-        return Groupe;
+        return groupe;
     }
 
     public void setGroupe(Groupe c) {
-        this.Groupe = c;
+        this.groupe = c;
     }
 
     public ListDataModel getCList() {
@@ -102,5 +111,11 @@ public class GroupeController {
         this.dataTable = dataTable;
     }
 
-    
+    public long getSelectedMusicienId() {
+        return selectedMusicienId;
+    }
+
+    public void setSelectedMusicienId(long selectedMusicienId) {
+        this.selectedMusicienId = selectedMusicienId;
+    }
 }

@@ -1,54 +1,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    <h:head>
-        <script type="text/javascript" language="javascript">
-            function confirmDelete(){
-                if (confirm("Voulez-vous supprimmer le(s) créneau(x) s&eacute;lectionn&eacute;(s) ?"))
-                    return true;
-                return false;
-            }
-        </script>
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Nouveau musicien</title>
+</h:head>
+<h:body>
+    <h1>Nouveau musicien</h1>
+    <hr/>
+    <h:form>
+        <table border="0">
+            <tr>
+                <td><h:outputLabel value="Nom : "/></td>
+                <td><h:inputText value="#{musicienController.musicien.nom}" required="true"/>
+                </td>
+            </tr>
+            <tr>
+                <td><h:outputLabel value="Prénom :"/></td>
+                <td><h:inputText value="#{musicienController.musicien.prenom}"/></td>
+            </tr>
+            <tr>
+                <td><h:outputLabel value="Instrument(s) : "/></td>
+                <td><h:inputText value="#{musicienController.musicien.instrument}"/></td>
+            </tr>
 
+        </table>
 
-        <title>Planning</title>
-    </h:head>
-    <h:body>
-        <h1>Planning</h1>
-        <hr/>
-        <h:form>
-            <h:dataTable value="#{planningController.CList}" var="c" border="1">
-                <h:column>
-                    <h:selectBooleanCheckbox value="#{c.selected}"/>
-                </h:column>
+        <h:commandButton value="Créer" action="#{musicienController.doCreate}"/>
+    </h:form>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Semaine"/>
-                    </f:facet>
-                    <h:outputText value="#{c.semaine}"/>
-                </h:column>
+    <h:form>
+        <h:commandButton value="Annuler" action="#{musicienController.doCancel}"/>
+    </h:form>
+    <hr/>
 
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Jour"/>
-                    </f:facet>
-                    <h:commandLink action="#{planningController.doEdit}" value="#{c.jour}" />
-                </h:column>0
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Horaire"/>
-                    </f:facet>
-                    <h:outputText value="#{c.heure}"/>
-                </h:column> 
-            </h:dataTable>
-
-            <h:commandLink action="#{planningController.doNew}">Nouveau créneau</h:commandLink>
-            <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
-            <h:commandLink action="#{planningController.doDelete}" onclick="return confirmDelete();">Supprimer la s&eacute;lection</h:commandLink>
-        </h:form>
-        <hr/>
-    </h:body>
+</h:body>
 </html>

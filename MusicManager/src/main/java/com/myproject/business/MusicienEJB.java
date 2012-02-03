@@ -17,6 +17,10 @@ public class MusicienEJB {
     // ======================================
     // =           Public Methods           =
     // ======================================
+    public Musicien findById(long id) {
+        return em.find(Musicien.class, id);
+    }
+
     public List<Musicien> findAll() {
         Query query = em.createNamedQuery(Musicien.FIND_ALL);
         return query.getResultList();
