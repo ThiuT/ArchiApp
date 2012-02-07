@@ -28,7 +28,7 @@ public class PlanningController {
     private ListDataModel cList; // j'ai utilisé un ListDataModel et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
 
     private void updateCList() {
-        cList = new ListDataModel(planningEJB.findAll());
+         cList = new ListDataModel(planningEJB.findAll());
     }
 
     // ======================================
@@ -55,7 +55,12 @@ public class PlanningController {
         updateCList();
         return "planning.xhtml";
     }
-
+    
+    public Creneau getCreneau(int j, int h)
+    {   
+        return (Creneau)planningEJB.find(j, h);
+    }
+    
     private List<Creneau> onlySelected(List<Creneau> list) {
         for (Iterator<Creneau> it = list.iterator(); it.hasNext(); ) {
             if (!(it.next().isSelected()))

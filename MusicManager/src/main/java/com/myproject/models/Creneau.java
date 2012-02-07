@@ -2,28 +2,24 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.myproject.models;
+
 import java.io.Serializable;
 import javax.persistence.*;
 
-
 @Entity
-
-@NamedQuery(name = Creneau.FIND_ALL, query = "SELECT c FROM Creneau c")
-
+@NamedQueries({
+    @NamedQuery(name = Creneau.FIND_ALL, query = "SELECT c FROM Creneau c"),
+    @NamedQuery(name = Creneau.FIND, query = "SELECT c FROM Creneau c WHERE c.jour=:j AND c.heure=:h")
+})
 public class Creneau implements Serializable {
-   public final static String FIND_ALL = "Creneau.findAll";
-   public final static String Del_SOM = "Creneau.delete";
 
- @Id
-    @GeneratedValue
-    private Long id;
-    @Column(nullable = false)
-    private int semaine;
-    @Column(nullable = false)
+    public final static String FIND_ALL = "Creneau.findAll";
+    public final static String Del_SOM = "Creneau.delete";
+    public final static String FIND = "Creneau.find";
+    @Id @Column(nullable = false)
     private int jour;
-    @Column(nullable = false)
+    @Id @Column(nullable = false)
     private int heure;
     @JoinColumn
     @ManyToOne
@@ -34,12 +30,10 @@ public class Creneau implements Serializable {
     // ======================================
     // =            Constructors            =
     // ======================================
-
     public Creneau() {
     }
 
-    public Creneau(int w, int d, int h, Groupe g) {
-        this.semaine = w;
+    public Creneau(int d, int h, Groupe g) {
         this.jour = d;
         this.heure = h;
         this.groupe = g;
@@ -48,9 +42,13 @@ public class Creneau implements Serializable {
     // ======================================
     // =          Getters & Setters         =
     // ======================================
-    public Long getId() {
-        return id;
-    }
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId() {
+//        id = 10 * jour + heure;
+//    }
 
     public Groupe getGroupe() {
         return groupe;
@@ -76,14 +74,6 @@ public class Creneau implements Serializable {
         this.jour = jour;
     }
 
-    public int getSemaine() {
-        return semaine;
-    }
-
-    public void setSemaine(int semaine) {
-        this.semaine = semaine;
-    }
-
     public Boolean isSelected() {
         return selected;
     }
@@ -99,17 +89,14 @@ public class Creneau implements Serializable {
     // ======================================
     // =         hash, equals, toString     =
     // ======================================
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
         sb.append("Créneau");
-        sb.append("{id=").append(id);
-        sb.append(", semaine='").append(semaine).append('\'');
+//        sb.append("{id=").append(id);
         sb.append(", jour=").append(jour);
         sb.append(", heure='").append(heure).append('\'');
         sb.append('}');
         return sb.toString();
     }
 }
-
