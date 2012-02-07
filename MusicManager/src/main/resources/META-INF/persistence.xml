@@ -3,7 +3,7 @@
   <persistence-unit name="jsfExamplePU" transaction-type="JTA">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <jta-data-source>jdbc/sample</jta-data-source>
-    <class>com.myproject.models.Book</class>
+    <class>com.myproject.models.Creneau</class>
     <class>com.myproject.models.Groupe</class>
     <class>com.myproject.models.Musicien</class>
     <properties>

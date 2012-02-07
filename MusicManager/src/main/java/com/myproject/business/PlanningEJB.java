@@ -21,10 +21,14 @@ public class PlanningEJB {
         Query query = em.createNamedQuery(Creneau.FIND_ALL);
         return query.getResultList();
     }
-    
+
     public Creneau find(int j, int h) {
-        Query query = em.createNamedQuery(Creneau.FIND).setParameter("j",j).setParameter("h",h);
-        return (Creneau)query.getSingleResult();
+        Query query = em.createNamedQuery(Creneau.FIND).setParameter("j", j).setParameter("h", h);
+        try {
+            return (Creneau) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public Creneau create(Creneau c) {

@@ -2,7 +2,9 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      >
     <h:head>
         <script type="text/javascript" language="javascript">
             function confirmDelete(){
@@ -20,7 +22,26 @@
         <hr/>
         
         <h:form>
-            <h:dataTable value="#{planningController.CList}" var="c" border="1">
+            <table border="2">
+                <thead>
+                    <tr><th></th><th>Lundi</th><th>Mardi</th><th>Mercredi</th><th>Jeudi</th><th>Vendredi</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Midi<br/>(12-14)</th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(1,1) != null}">
+                                <h:outputText value="#{planningController.getCreneau(1,1).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(1,1) == null}">
+                                <h:commandLink action="#{planningController.doNew}">Reserver</h:commandLink>
+                            
+                            </c:if>
+                        </th></tr>
+                </tbody>
+            </table>
+            
+           <h:dataTable value="#{planningController.CList}" var="c" border="1">
 
                 <h:column>
                     <h:selectBooleanCheckbox value="#{c.selected}"/>
@@ -30,35 +51,35 @@
                     <f:facet name="header">
                         <h:outputText value="Lundi"/>
                     </f:facet>
-                    <h:outputText value="#{c.id}"/>
+                    <h:outputText value="#{c.heure}"/>
                 </h:column>
                 
                  <h:column>
                     <f:facet name="header">
                         <h:outputText value="Mardi"/>
                     </f:facet>
-                    <h:outputText value="#{c.id}"/>
+                    <h:outputText value="#{c.heure}"/>
                 </h:column>
                 
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Mercredi"/>
                     </f:facet>
-                    <h:outputText value="#{c.id}"/>
+                    <h:outputText value="#{c.heure}"/>
                 </h:column>
                 
                                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Jeudi"/>
                     </f:facet>
-                    <h:outputText value="#{c.id}"/>
+                    <h:outputText value="#{c.heure}"/>
                 </h:column>
                 
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Vendredi"/>
                     </f:facet>
-                    <h:outputText value="#{c.id}"/>
+                    <h:outputText value="#{c.heure}"/>
                 </h:column>
 
 

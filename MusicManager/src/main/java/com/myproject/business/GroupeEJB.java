@@ -21,6 +21,11 @@ public class GroupeEJB {
         Query query = em.createNamedQuery(Groupe.FIND_ALL);
         return query.getResultList();
     }
+    
+    public Groupe findByID(Long id) {
+        Query query = em.createNamedQuery(Groupe.FIND_BY_ID).setParameter("i", id);
+        return (Groupe)query.getSingleResult();
+    }
 
     public Groupe create(Groupe c) {
         em.persist(c);

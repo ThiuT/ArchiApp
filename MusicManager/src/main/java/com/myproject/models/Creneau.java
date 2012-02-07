@@ -26,6 +26,7 @@ public class Creneau implements Serializable {
     private Groupe groupe;
     @Transient
     private Boolean selected;
+   
 
     // ======================================
     // =            Constructors            =
@@ -92,11 +93,11 @@ public class Creneau implements Serializable {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("Créneau");
+        sb.append(groupe.getNom());
 //        sb.append("{id=").append(id);
-        sb.append(", jour=").append(jour);
-        sb.append(", heure='").append(heure).append('\'');
-        sb.append('}');
+       // sb.append(", jour=").append(jour);
+        //sb.append(", heure='").append(heure).append('\'');
+        //sb.append('}');
         return sb.toString();
     }
 }

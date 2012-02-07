@@ -1,5 +1,6 @@
 package com.myproject.controllers;
 
+import com.myproject.business.GroupeEJB;
 import com.myproject.business.PlanningEJB;
 import com.myproject.models.Creneau;
 import javax.faces.bean.ManagedBean;
@@ -9,7 +10,7 @@ import java.util.List;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.model.ListDataModel;
-
+import javax.persistence.NoResultException;
 
 @ManagedBean
 @SessionScoped
@@ -18,23 +19,22 @@ public class PlanningController {
     // ======================================
     // =             Attributes             =
     // ======================================
-
     @EJB
     private PlanningEJB planningEJB;
-
+    @EJB
+    private GroupeEJB groupeEJB;
     private HtmlDataTable dataTable;
-
     private Creneau creneau = new Creneau();
     private ListDataModel cList; // j'ai utilisé un ListDataModel et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
+    private Long groupeID;
 
     private void updateCList() {
-         cList = new ListDataModel(planningEJB.findAll());
+        cList = new ListDataModel(planningEJB.findAll());
     }
 
     // ======================================
     // =           Public Methods           =
     // ======================================
-
     public String doNew() {
         creneau = new Creneau();
         return "newCreneau.xhtml";
@@ -44,33 +44,34 @@ public class PlanningController {
         creneau = planningEJB.create(creneau);
         return "planning.xhtml";
     }
-    
+
     public String doCancel() {
         return "planning.xhtml";
     }
 
     public String doDelete() {
-        List<Creneau> creneaux = (List<Creneau>)cList.getWrappedData();
+        List<Creneau> creneaux = (List<Creneau>) cList.getWrappedData();
         planningEJB.delete(onlySelected(creneaux));
         updateCList();
         return "planning.xhtml";
     }
-    
-    public Creneau getCreneau(int j, int h)
-    {   
-        return (Creneau)planningEJB.find(j, h);
+
+    public Creneau getCreneau(int j, int h) {
+        return (Creneau) planningEJB.find(j, h);
+
     }
-    
+
     private List<Creneau> onlySelected(List<Creneau> list) {
-        for (Iterator<Creneau> it = list.iterator(); it.hasNext(); ) {
-            if (!(it.next().isSelected()))
+        for (Iterator<Creneau> it = list.iterator(); it.hasNext();) {
+            if (!(it.next().isSelected())) {
                 it.remove();
+            }
         }
         return list;
     }
 
     public String doEdit() {
-        creneau = (Creneau)cList.getRowData(); // Voici comment on trouve le livre sélectionné
+        creneau = (Creneau) cList.getRowData(); // Voici comment on trouve le livre sélectionné
         return "editCreneau.xhtml";
     }
 
@@ -81,6 +82,15 @@ public class PlanningController {
     // ======================================
     // =          Getters & Setters         =
     // ======================================
+
+    public Long getGroupeID() {
+        return groupeID;
+    }
+
+    public void setGroupeID(Long groupeID) {
+        this.groupeID = groupeID;
+        creneau.setGroupe(groupeEJB.findByID(groupeID));
+    }
 
     public Creneau getCreneau() {
         return creneau;
@@ -106,6 +116,4 @@ public class PlanningController {
     public void setDataTable(HtmlDataTable dataTable) {
         this.dataTable = dataTable;
     }
-
-    
 }
