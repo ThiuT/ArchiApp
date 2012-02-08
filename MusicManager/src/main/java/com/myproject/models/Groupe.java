@@ -27,9 +27,6 @@ public class Groupe implements Serializable {
     private String nom;
     @Column
     private String style;
-    @JoinColumn(nullable = false)
-    @OneToOne
-    private Musicien leader;
     @ManyToMany
     private List<Musicien> membres;
 
@@ -43,10 +40,9 @@ public class Groupe implements Serializable {
         membres = new ArrayList<Musicien>();
     }
 
-    public Groupe(String n, String s, Musicien l) {
+    public Groupe(String n, String s) {
         this.nom = n;
         this.style = s;
-        this.leader = l;
         membres = new ArrayList<Musicien>();
     }
 
@@ -67,13 +63,6 @@ public class Groupe implements Serializable {
 
     public void setMembres(List<Musicien> membres) {
         this.membres = membres;
-    }
-    public Musicien getLeader() {
-        return leader;
-    }
-
-    public void setLeader(Musicien leader) {
-        this.leader = leader;
     }
 
     public String getNom() {

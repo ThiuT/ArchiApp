@@ -1,7 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
     <title>Editer groupe</title>
 </h:head>
@@ -20,11 +22,24 @@
                 <td><h:inputText value="#{groupeController.groupe.style}"/></td>
             </tr>
             <tr>
-                <td><h:outputLabel value="Leader : "/></td>
-                <td><h:inputText value="#{groupeController.groupe.leader.nom}"/></td>
-            </tr>
-
+                <td><h:outputLabel value="Membres : "/></td>
+                <td>
+                    <h:selectOneMenu value="#{groupeController.membreId}" converter="javax.faces.Long">
+                        <f:selectItems itemLabel="#{musicien}" itemValue="#{musicien.id}" var="musicien" value="#{musicienController.CList}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Ajouter" action="#{groupeController.addMembre}"/>
+                </td>
+            </tr>           
+        
         </table>
+        <p>Membres du groupe</p>
+        <ul>
+            <c:forEach items="#{groupeController.groupe.membres}" var="item">
+                 <li><h:outputText value="#{item}"/>
+                 <h:commandButton value=" Supprimer" action="#{groupeController.removeMembre(item)}"/>
+                 </li>
+            </c:forEach>
+        </ul>
 
         <h:commandButton value="Sauver" action="#{groupeController.doSave}"/>
 

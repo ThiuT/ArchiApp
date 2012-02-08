@@ -30,7 +30,7 @@ public class GroupeController {
     private Groupe groupe = new Groupe();
     private List<Groupe> cList; // j'ai utilisé un List<Groupe> et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
 
-    private List<Long> membreIds;
+    private Long membreId;
 
     private long selectedMusicienId;
 
@@ -62,6 +62,11 @@ public class GroupeController {
         return "membres.xhtml";
     }
 
+    public String doDelete(Groupe g) {
+        groupeEJB.delete(g);
+        updateCList();
+        return "membres.xhtml";
+    }
     private List<Groupe> onlySelected(List<Groupe> list) {
         for (Iterator<Groupe> it = list.iterator(); it.hasNext(); ) {
             if (!(it.next().isSelected()))
@@ -74,12 +79,28 @@ public class GroupeController {
         return "editGroupe.xhtml";
     }
 
+    public String doEdit(Groupe g) { 
+        groupe = g;
+        return "editGroupe.xhtml";
+    }
+
     public String doSave() {
-        Musicien selectedLeader= musicienEJB.findById(selectedMusicienId);
-        groupe.setLeader(selectedLeader);
         groupe = groupeEJB.update(groupe);
         return "membres.xhtml";
     }
+    
+    public String addMembre() {
+        List<Musicien> l = groupe.getMembres();
+        l.add(musicienEJB.findById(membreId));
+        return "newGroupe.xhtml";
+    }
+    
+    public String removeMembre(Musicien m) {
+        List<Musicien> l = groupe.getMembres();
+        l.remove(m);
+        return "newGroupe.xhtml";
+    }
+    
     // ======================================
     // =          Getters & Setters         =
     // ======================================
@@ -92,20 +113,14 @@ public class GroupeController {
         this.groupe = c;
     }
 
-    public List<Long> getMembreIds() {
-        return membreIds;
+    public Long getMembreId() {
+        return membreId;
     }
 
-    public void setMembreIds(List<Long> membreIds) {
-        this.membreIds = membreIds;
-        List<Musicien> membres = groupe.getMembres();
-        for (Iterator<Long> it = membreIds.iterator(); it.hasNext(); ) {
-            membres.add(musicienEJB.findById(it.next()));
-            it.remove();
-        }
-        groupe.setMembres(membres);
+    public void setMembreId(Long membreId) {
+        this.membreId = membreId;
     }
-
+    
     public List<Groupe> getCList() {
         updateCList();
         return cList;

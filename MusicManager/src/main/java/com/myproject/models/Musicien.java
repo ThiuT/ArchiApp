@@ -119,7 +119,7 @@ public class Musicien implements Serializable {
 
     @Override
     public String toString() {
-        return nom + " " + prenom;
+        return prenom + " " + nom;
     }
     
 }

@@ -48,13 +48,25 @@ public class MusicienController {
     }
 
     public String doDelete() {
-        musicienEJB.delete(cList);
+        musicienEJB.delete(musicien);
+        updateCList();
+        return "membres.xhtml";
+    }
+    
+    public String doDelete(Musicien m) {
+        musicienEJB.delete(m);
         updateCList();
         return "membres.xhtml";
     }
 
     public String doEdit() {
 //        musicien = (Musicien)cList.getRowData(); // Voici comment on trouve le livre sélectionné
+        return "editMusicien.xhtml";
+    }
+    
+    public String doEdit(Musicien m) {
+//        musicien = (Musicien)cList.getRowData(); // Voici comment on trouve le livre sélectionné
+        musicien = m;
         return "editMusicien.xhtml";
     }
 

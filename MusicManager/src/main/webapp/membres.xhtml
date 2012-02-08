@@ -20,88 +20,41 @@
         <h1>Membres</h1><a href="planning.xhtml"><h2>Planning</h2></a>
         <hr/>
         <!-- Liste de tous les membres -->
+        <h:form>
+                <h:commandLink action="#{musicienController.doNew}">Nouveau musicien</h:commandLink>
         <ul>
         <c:forEach items="#{musicienController.CList}" var="item">
-        <li><h:outputText value="#{item.nom}"/></li>
+        <li>
+            <h:outputText value="#{item}"/>
+            <h:commandLink action="#{musicienController.doEdit(item)}" value=" Editer" />
+            <h:commandLink action="#{musicienController.doDelete(item)}" onclick="return confirmDelete();"> Supprimer</h:commandLink>
+        </li>
         </c:forEach>
         </ul>
-        <ul>
-            <c:forEach items="#{groupeController.CList}" var="item">
-                <li><h:outputText value="#{item.nom}"/></li>
-                <c:forEach items="#{item.membres}" var="membre">
-                    <li><h:outputText value="#{membre.nom}"/></li>
-                </c:forEach>
-            </c:forEach>
-        </ul>
-
         
         
         
-        <h:form>
-            <h:dataTable value="#{musicienController.CList}" var="c" border="1">
-                <h:column>
-                    <h:selectBooleanCheckbox value="#{c.selected}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Nom"/>
-                    </f:facet>
-                    <h:outputText value="#{c.nom}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Prénom"/>
-                    </f:facet>
-                    <h:commandLink action="#{musicienController.doEdit}" value="#{c.prenom}" />
-                </h:column>0
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Instrument(s)"/>
-                    </f:facet>
-                    <h:outputText value="#{c.instrument}"/>
-                </h:column> 
-            </h:dataTable>
-
-            <h:commandLink action="#{musicienController.doNew}">Nouveau musicien</h:commandLink>
-            <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
-            <h:commandLink action="#{musicienController.doDelete}" onclick="return confirmDelete();">Supprimer la s&eacute;lection</h:commandLink>
-        </h:form>
+        
+     
         <hr/>
         
         <h1>Groupes</h1>
         <hr/>
-        <h:form>
-            <h:dataTable value="#{groupeController.CList}" var="g" border="1">
-                <h:column>
-                    <h:selectBooleanCheckbox value="#{g.selected}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Nom"/>
-                    </f:facet>
-                    <h:outputText value="#{g.nom}"/>
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Style"/>
-                    </f:facet>
-                    <h:commandLink action="#{groupeController.doEdit}" value="#{g.style}" />
-                </h:column>0
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Leader"/>
-                    </f:facet>
-                    <h:outputText value="#{g.leader}"/>
-                </h:column> 
-            </h:dataTable>
-
             <h:commandLink action="#{groupeController.doNew}">Nouveau groupe</h:commandLink>
-            <h:outputText value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/>
-            <h:commandLink action="#{groupeController.doDelete}" onclick="return confirmDelete();">Supprimer la s&eacute;lection</h:commandLink>
+        <ul>
+        <c:forEach items="#{groupeController.CList}" var="item">
+        <li>
+            <h:outputText value="#{item}"/>
+            <h:commandLink action="#{groupeController.doEdit(item)}" value=" Editer" />
+            <h:commandLink action="#{groupeController.doDelete(item)}" onclick="return confirmDelete();"> Supprimer</h:commandLink>
+            <ul>
+            <c:forEach items ="#{item.membres}" var="membre">
+                <li><h:outputText value="#{membre}"/></li>
+            </c:forEach>
+            </ul>
+        </li>
+        </c:forEach>
+        </ul>
         </h:form>
         <hr/>
     </h:body>

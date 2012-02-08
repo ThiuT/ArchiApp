@@ -60,6 +60,12 @@ public class PlanningController {
         updateCList();
         return "planning.xhtml";
     }
+    
+    public String doDelete(Creneau c) {
+        planningEJB.delete(c);
+        updateCList();
+        return "planning.xhtml";
+    }
 
     public Creneau getCreneau(int j, int h) {
         return (Creneau) planningEJB.find(j, h);
