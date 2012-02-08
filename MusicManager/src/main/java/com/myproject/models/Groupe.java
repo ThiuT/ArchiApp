@@ -5,6 +5,8 @@
 package com.myproject.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -28,6 +30,9 @@ public class Groupe implements Serializable {
     @JoinColumn(nullable = false)
     @OneToOne
     private Musicien leader;
+    @ManyToMany
+    private List<Musicien> membres;
+
     @Transient
     private Boolean selected;
 
@@ -35,12 +40,14 @@ public class Groupe implements Serializable {
     // =            Constructors            =
     // ======================================
     public Groupe() {
+        membres = new ArrayList<Musicien>();
     }
 
     public Groupe(String n, String s, Musicien l) {
         this.nom = n;
         this.style = s;
         this.leader = l;
+        membres = new ArrayList<Musicien>();
     }
 
     // ======================================
@@ -54,6 +61,13 @@ public class Groupe implements Serializable {
         this.id = id;
     }
 
+    public List<Musicien> getMembres() {
+        return membres;
+    }
+
+    public void setMembres(List<Musicien> membres) {
+        this.membres = membres;
+    }
     public Musicien getLeader() {
         return leader;
     }

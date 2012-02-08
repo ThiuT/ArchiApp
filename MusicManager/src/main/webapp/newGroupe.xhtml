@@ -21,6 +21,14 @@
                 <td><h:inputText value="#{groupeController.groupe.style}"/></td>
             </tr>
             <tr>
+                <td><h:outputLabel value="Membres : "/></td>
+                <td>
+                    <h:selectManyListbox value="#{groupeController.membreIds}" converter="javax.faces.Long">
+                        <f:selectItems itemLabel="#{musicien}" itemValue="#{musicien.id}" var="musicien" value="#{musicienController.CList}"/>
+                    </h:selectManyListbox>
+                </td>
+            </tr>
+            <tr>
                 <td><h:outputLabel value="Leader : "/></td>
                 <td>
                     <h:selectOneMenu value="#{groupeController.selectedMusicienId}">

@@ -5,15 +5,20 @@
 package com.myproject.models;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@NamedQuery(name = Musicien.FIND_ALL, query = "SELECT m FROM Musicien m")
+@NamedQueries({
+    @NamedQuery(name = Musicien.FIND_ALL, query = "SELECT m FROM Musicien m"),
+    @NamedQuery(name = Musicien.FIND_BY_ID, query = "SELECT m FROM Musicien m WHERE m.id=:i")
+})
 public class Musicien implements Serializable {
     
     private static final long serialVersionUID = 1L;
     public final static String FIND_ALL = "Musicien.findAll";
     public final static String Del_SOM = "Musicien.delete";
+    public final static String FIND_BY_ID = "Musicien.findByID";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -23,6 +28,8 @@ public class Musicien implements Serializable {
     private String prenom;
     @Column
     private String instrument;
+    @ManyToMany(mappedBy = "membres")
+    private List<Groupe> groupes;
     @Transient
     private Boolean selected;
     

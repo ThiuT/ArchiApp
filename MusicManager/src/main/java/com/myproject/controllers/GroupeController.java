@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.html.HtmlDataTable;
-import javax.faces.model.ListDataModel;
 
 
 @ManagedBean
@@ -29,13 +28,14 @@ public class GroupeController {
     private HtmlDataTable dataTable;
 
     private Groupe groupe = new Groupe();
-    private ListDataModel cList; // j'ai utilisé un ListDataModel et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
+    private List<Groupe> cList; // j'ai utilisé un List<Groupe> et pas List parce que cela permet de retrouver l'élément sélectionné dans la liste (pour l'édition d'un livre)
 
+    private List<Long> membreIds;
 
     private long selectedMusicienId;
 
     private void updateCList() {
-        cList = new ListDataModel(groupeEJB.findAll());
+        cList = groupeEJB.findAll();
     }
 
     // ======================================
@@ -57,8 +57,7 @@ public class GroupeController {
     }
 
     public String doDelete() {
-        List<Groupe> Groupes = (List<Groupe>)cList.getWrappedData();
-        groupeEJB.delete(onlySelected(Groupes));
+        groupeEJB.delete(onlySelected(cList));
         updateCList();
         return "membres.xhtml";
     }
@@ -71,8 +70,7 @@ public class GroupeController {
         return list;
     }
 
-    public String doEdit() {
-        groupe = (Groupe)cList.getRowData(); // Voici comment on trouve le livre sélectionné
+    public String doEdit() { 
         return "editGroupe.xhtml";
     }
 
@@ -94,12 +92,26 @@ public class GroupeController {
         this.groupe = c;
     }
 
-    public ListDataModel getCList() {
+    public List<Long> getMembreIds() {
+        return membreIds;
+    }
+
+    public void setMembreIds(List<Long> membreIds) {
+        this.membreIds = membreIds;
+        List<Musicien> membres = groupe.getMembres();
+        for (Iterator<Long> it = membreIds.iterator(); it.hasNext(); ) {
+            membres.add(musicienEJB.findById(it.next()));
+            it.remove();
+        }
+        groupe.setMembres(membres);
+    }
+
+    public List<Groupe> getCList() {
         updateCList();
         return cList;
     }
 
-    public void setCList(ListDataModel cList) {
+    public void setCList(List<Groupe> cList) {
         this.cList = cList;
     }
 

@@ -2,7 +2,8 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <script type="text/javascript" language="javascript">
             function confirmDelete(){
@@ -18,6 +19,24 @@
     <h:body>
         <h1>Membres</h1><a href="planning.xhtml"><h2>Planning</h2></a>
         <hr/>
+        <!-- Liste de tous les membres -->
+        <ul>
+        <c:forEach items="#{musicienController.CList}" var="item">
+        <li><h:outputText value="#{item.nom}"/></li>
+        </c:forEach>
+        </ul>
+        <ul>
+            <c:forEach items="#{groupeController.CList}" var="item">
+                <li><h:outputText value="#{item.nom}"/></li>
+                <c:forEach items="#{item.membres}" var="membre">
+                    <li><h:outputText value="#{membre.nom}"/></li>
+                </c:forEach>
+            </c:forEach>
+        </ul>
+
+        
+        
+        
         <h:form>
             <h:dataTable value="#{musicienController.CList}" var="c" border="1">
                 <h:column>

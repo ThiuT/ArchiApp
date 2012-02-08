@@ -39,6 +39,11 @@ public class PlanningController {
         creneau = new Creneau();
         return "newCreneau.xhtml";
     }
+    
+    public String doNew(int j, int h) {
+        creneau = new Creneau(j,h);
+        return "reserveCreneau.xhtml";
+    }
 
     public String doCreate() {
         creneau = planningEJB.create(creneau);

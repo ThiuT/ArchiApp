@@ -31,7 +31,11 @@ public class Creneau implements Serializable {
     // ======================================
     // =            Constructors            =
     // ======================================
-    public Creneau() {
+    public Creneau() {}
+    
+    public Creneau(int j, int h) {
+        this.jour=j;
+        this.heure=h;
     }
 
     public Creneau(int d, int h, Groupe g) {
@@ -99,5 +103,35 @@ public class Creneau implements Serializable {
         //sb.append(", heure='").append(heure).append('\'');
         //sb.append('}');
         return sb.toString();
+    }
+    
+    public String affJour() {
+        switch(jour) {
+            case 1:
+                return "Lundi";
+            case 2:
+                return "Mardi";
+            case 3:
+                return "Mercredi";
+            case 4:
+                return "Jeudi";
+            case 5:
+                return "Vendredi";
+            default:
+                return "";
+        }
+    }
+    
+    public String affHeure() {
+        switch(heure) {
+            case 1:
+                return "12h à 14h";
+            case 2:
+                return "18h à 20h";
+            case 3:
+                return "20h à 22h";
+            default:
+                return "";
+        }
     }
 }

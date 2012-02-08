@@ -28,16 +28,134 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Midi<br/>(12-14)</th>
+                        <th>Midi (12-14)</th>
                         <th>
                             <c:if test="#{planningController.getCreneau(1,1) != null}">
                                 <h:outputText value="#{planningController.getCreneau(1,1).groupe}"/>
                             </c:if>
                             <c:if test="#{planningController.getCreneau(1,1) == null}">
-                                <h:commandLink action="#{planningController.doNew}">Reserver</h:commandLink>
-                            
+                                <h:commandLink action="#{planningController.doNew(1,1)}">Reserver</h:commandLink>
                             </c:if>
-                        </th></tr>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(2,1) != null}">
+                                <h:outputText value="#{planningController.getCreneau(2,1).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(2,1) == null}">
+                                <h:commandLink action="#{planningController.doNew(2,1)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(3,1) != null}">
+                                <h:outputText value="#{planningController.getCreneau(3,1).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(3,1) == null}">
+                                <h:commandLink action="#{planningController.doNew(3,1)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(4,1) != null}">
+                                <h:outputText value="#{planningController.getCreneau(4,1).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(4,1) == null}">
+                                <h:commandLink action="#{planningController.doNew(4,1)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(5,1) != null}">
+                                <h:outputText value="#{planningController.getCreneau(5,1).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(5,1) == null}">
+                                <h:commandLink action="#{planningController.doNew(5,1)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Soir 1 (18-20)</th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(1,2) != null}">
+                                <h:outputText value="#{planningController.getCreneau(1,2).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(1,2) == null}">
+                                <h:commandLink action="#{planningController.doNew(1,2)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(2,2) != null}">
+                                <h:outputText value="#{planningController.getCreneau(2,2).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(2,2) == null}">
+                                <h:commandLink action="#{planningController.doNew(2,2)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(3,2) != null}">
+                                <h:outputText value="#{planningController.getCreneau(3,2).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(3,2) == null}">
+                                <h:commandLink action="#{planningController.doNew(3,2)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(4,2) != null}">
+                                <h:outputText value="#{planningController.getCreneau(4,2).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(4,2) == null}">
+                                <h:commandLink action="#{planningController.doNew(4,2)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(5,2) != null}">
+                                <h:outputText value="#{planningController.getCreneau(5,2).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(5,2) == null}">
+                                <h:commandLink action="#{planningController.doNew(5,2)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Soir 2 (20-22)</th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(1,3) != null}">
+                                <h:outputText value="#{planningController.getCreneau(1,3).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(1,3) == null}">
+                                <h:commandLink action="#{planningController.doNew(1,3)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(2,3) != null}">
+                                <h:outputText value="#{planningController.getCreneau(2,3).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(2,3) == null}">
+                                <h:commandLink action="#{planningController.doNew(2,3)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(3,3) != null}">
+                                <h:outputText value="#{planningController.getCreneau(3,3).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(3,3) == null}">
+                                <h:commandLink action="#{planningController.doNew(3,3)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(4,3) != null}">
+                                <h:outputText value="#{planningController.getCreneau(4,3)}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(4,3) == null}">
+                                <h:commandLink action="#{planningController.doNew(4,3)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                        <th>
+                            <c:if test="#{planningController.getCreneau(5,3) != null}">
+                                <h:outputText value="#{planningController.getCreneau(5,3).groupe}"/>
+                            </c:if>
+                            <c:if test="#{planningController.getCreneau(5,3) == null}">
+                                <h:commandLink action="#{planningController.doNew(5,3)}">Reserver</h:commandLink>
+                            </c:if>
+                        </th>
+                    </tr>
                 </tbody>
             </table>
             

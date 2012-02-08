@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Reserver un créneau</title>
+</h:head>
+<h:body>
+    <h1>Réserver un créneau</h1>
+    <hr/>
+    <h:form>
+
+        <p>Reserver le créneau du
+            <h:outputText value="#{planningController.creneau.affJour()}" />
+            de
+            <h:outputText value="#{planningController.creneau.affHeure()}" />
+            pour le groupe :
+        </p>
+        
+        <h:selectOneMenu value="#{planningController.groupeID}">
+            <f:selectItems itemLabel="#{groupe.nom}" itemValue="#{groupe.id}" var="groupe" value="#{groupeController.CList}"/>
+        </h:selectOneMenu>
+        
+        <br/>
+
+        <h:commandButton value="Créer" action="#{planningController.doCreate}"/>
+
+        <h:commandButton value="Annuler" action="#{planningController.doCancel}"/>
+    </h:form>
+    <hr/>
+
+</h:body>
+</html>
