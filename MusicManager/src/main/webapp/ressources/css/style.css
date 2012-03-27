@@ -1,3 +1,8 @@
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
 body {
 	margin:0;
 	padding:0;
@@ -7,6 +12,7 @@ body {
 p { 
 	margin-top: 0px;
 }
+
 table {
 margin-top: 20px;
 width: 50%;
@@ -43,11 +49,9 @@ h1 {
 }
 
 .bgx {
-
 	background: url(../images/pbg.gif) repeat-x ;
+        margin-bottom: 20px;
 }
-
-
 
 .c_name {
 	font-size: 22px;
@@ -58,3 +62,15 @@ h1 {
 	text-align: center;
 }
 
+div#menu {
+    text-align: center;
+}
+
+div#menu ul li {
+    background-color: #AE0011;
+    border: 2px solid black;
+    display: inline;
+    font-size: 20px;
+    padding: 5px 100px;
+    font-family:'Lemon',cursive;
+}
