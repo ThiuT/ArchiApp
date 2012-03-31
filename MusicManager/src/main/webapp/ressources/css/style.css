@@ -68,9 +68,27 @@ div#menu {
 
 div#menu ul li {
     background-color: #AE0011;
-    border: 2px solid black;
+    border: 4px outset black;
     display: inline;
     font-size: 20px;
     padding: 5px 100px;
     font-family:'Lemon',cursive;
+}
+
+div#menu ul li:hover {
+    border-style: inset;
+}
+
+div#menu ul a:link {
+    color: black;
+    text-decoration: none;
+}
+
+div#menu ul a:visited {
+    color: black;
+    text-decoration: none;
+}
+
+div#menu ul li.current {
+    border-style: inset;
 }

@@ -5,6 +5,10 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
+        <link href="ressources/css/style.css" rel="stylesheet" type="text/css"/>
+        <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'/>
+        <link href='http://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'/>
         <script type="text/javascript" language="javascript">
             function confirmDelete(){
                 if (confirm("Voulez-vous supprimmer le(s) musicien(s) s&eacute;lectionn&eacute;(s) ?"))
@@ -12,14 +16,25 @@
                 return false;
             }
         </script>
-
-
         <title>Membres</title>
     </h:head>
+    
     <h:body>
-        <h1>Membres</h1><a href="planning.xhtml"><h2>Planning</h2></a>
-        <hr/>
-        <!-- Liste de tous les membres -->
+        
+        <div class ="bgx">
+
+            <p style="text-align:left"><img src="ressources/images/p4.jpg" width="660" height="200"/></p>
+
+            <div class="c_name">Application Com'Musique</div>
+        </div>
+        <div id="menu">
+            <ul>
+                <a href="planning.xhtml"><li>Planning</li></a>
+                <li class ="current">Membres</li>
+            </ul>
+        </div>
+
+        
         <h:form>
                 <h:commandLink action="#{musicienController.doNew}">Nouveau musicien</h:commandLink>
         <ul>
