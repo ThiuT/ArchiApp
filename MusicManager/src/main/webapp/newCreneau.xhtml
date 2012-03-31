@@ -4,11 +4,22 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
+    <link href="ressources/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'/>
     <title>Nouveau créneau</title>
 </h:head>
 <h:body>
-    <h1>Nouveau créneau</h1>
-    <hr/>
+        <div class ="bgx">
+
+            <p style="text-align:left"><img src="ressources/images/p4.jpg" width="660" height="200"/></p>
+
+            <h1>Application Com'Musique</h1>
+            
+            <h2>Nouveau créneau</h2>
+        </div>
+    
     <h:form>
         <table border="0">
             <tr>
@@ -33,7 +44,8 @@
     <h:form>
         <h:commandButton value="Annuler" action="#{planningController.doCancel}"/>
     </h:form>
-    <hr/>
+    
+    <p style="text-align:right"><img src="ressources/images/portee1.jpg" width="640" height="246"/></p>
 
 </h:body>
 </html>
