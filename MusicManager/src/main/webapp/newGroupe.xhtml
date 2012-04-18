@@ -5,11 +5,23 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
+    <link href="ressources/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Lemon' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'/>
     <title>Editer groupe</title>
 </h:head>
 <h:body>
-    <h1>Editer groupe</h1>
-    <hr/>
+    <div class ="bgx">
+
+        <p style="text-align:left"><img src="ressources/images/p4.jpg" width="660" height="200"/></p>
+
+        <h1>Application Com'Musique</h1>
+            
+        <h2>Editer groupe</h2>
+    </div>
+    
+
     <h:form>
         <table border="0">
             <tr>
@@ -28,21 +40,24 @@
                         <f:selectItems itemLabel="#{musicien}" itemValue="#{musicien.id}" var="musicien" value="#{musicienController.CList}"/>
                     </h:selectOneMenu>
                     <h:commandButton value="Ajouter" action="#{groupeController.addMembre}"/>
+                    <ul>
+                        <c:forEach items="#{groupeController.groupe.membres}" var="item">
+                        <li>
+                            <h:outputText value="#{item}"/>
+                            <h:commandButton value=" Supprimer" action="#{groupeController.removeMembre(item)}"/>
+                        </li>
+                        </c:forEach>
+                    </ul>
                 </td>
             </tr>
         </table>
-        <ul>
-            <c:forEach items="#{groupeController.groupe.membres}" var="item">
-                 <li><h:outputText value="#{item}"/></li>
-            </c:forEach>
-        </ul>
-
-        <h:commandButton value="Sauver" action="#{groupeController.doSave}"/>
-
+        
+        <div class="buttons">
+            <h:commandButton value="Sauver" action="#{groupeController.doSave}" styleClass="button"/>     
+            <h:commandButton value="Annuler" action="#{groupeController.doCancel}" styleClass="button" immediate="true"/>
+        </div>
     </h:form>
-    <h:form>
-        <h:commandButton value="Annuler" action="#{groupeController.doCancel}"/>
-    </h:form>
+
     <hr/>
 </h:body>
 </html>

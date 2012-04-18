@@ -33,44 +33,46 @@
                 <li class ="current">Membres</li>
             </ul>
         </div>
-
-        
+        <div class="container">
         <h:form>
-                <h:commandLink action="#{musicienController.doNew}">Nouveau musicien</h:commandLink>
-        <ul>
-        <c:forEach items="#{musicienController.CList}" var="item">
-        <li>
-            <h:outputText value="#{item}"/>
-            <h:commandLink action="#{musicienController.doEdit(item)}" value=" Editer" />
-            <h:commandLink action="#{musicienController.doDelete(item)}" onclick="return confirmDelete();"> Supprimer</h:commandLink>
-        </li>
-        </c:forEach>
-        </ul>
-        
-        
-        
-        
-     
-        <hr/>
-        
-        <h2>Groupes</h2>
-        <hr/>
-            <h:commandLink action="#{groupeController.doNew}">Nouveau groupe</h:commandLink>
-        <ul>
-        <c:forEach items="#{groupeController.CList}" var="item">
-        <li>
-            <h:outputText value="#{item}"/>
-            <h:commandLink action="#{groupeController.doEdit(item)}" value=" Editer" />
-            <h:commandLink action="#{groupeController.doDelete(item)}" onclick="return confirmDelete();"> Supprimer</h:commandLink>
-            <ul>
-            <c:forEach items ="#{item.membres}" var="membre">
-                <li><h:outputText value="#{membre}"/></li>
-            </c:forEach>
-            </ul>
-        </li>
-        </c:forEach>
-        </ul>
+            <div class="columnLeft">
+                <h2>Musiciens</h2>
+                
+                <div class="columnText">
+                    <div class="columnHead"><h:commandButton action="#{musicienController.doNew}" value="Nouveau musicien"/></div>
+                <ul>
+                    <c:forEach items="#{musicienController.CList}" var="item">
+                        <li>
+                            <h:outputText value="#{item}"/>
+                            <h:commandButton action="#{musicienController.doEdit(item)}" value=" Editer" styleClass="editButton"/>
+                            <h:commandButton action="#{musicienController.doDelete(item)}" onclick="return confirmDelete();" value="Supprimer" styleClass="editButton"/>
+                        </li>
+                    </c:forEach>
+                 </ul>
+                </div>
+            </div>
+            <div class="columnRight">
+                <h2>Groupes</h2>
+                <div class="columnText">
+                    <div class="columnHead"><h:commandButton action="#{groupeController.doNew}" value="Nouveau groupe" /></div>
+                <ul>
+                    <c:forEach items="#{groupeController.CList}" var="item">
+                        <li>
+                            <h:outputText value="#{item}"/>
+                            <h:commandButton action="#{groupeController.doEdit(item)}" value=" Editer" styleClass="editButton"/>
+                            <h:commandButton action="#{groupeController.doDelete(item)}" onclick="return confirmDelete();" value="Supprimer" styleClass="editButton"/>
+                            <ul>
+                                <c:forEach items ="#{item.membres}" var="membre">
+                                    <li><h:outputText value="#{membre}"/></li>
+                                </c:forEach>
+                            </ul>
+                        </li>
+                </c:forEach>
+                </ul>
+                </div>
+            </div>
         </h:form>
+        </div>
         <p class="botImg"><img src="ressources/images/portee1.jpg" width="640" height="246"/></p>
     </h:body>
 </html>
