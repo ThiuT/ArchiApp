@@ -12,8 +12,14 @@
     <title>Editer groupe</title>
 </h:head>
 <h:body>
-    <h1>Editer groupe</h1>
-    <hr/>
+    <div class ="bgx">
+
+        <p style="text-align:left"><img src="ressources/images/p4.jpg" width="660" height="200"/></p>
+
+        <h1>Application Com'Musique</h1>
+            
+        <h2>Editer groupe</h2>
+    </div>
     <h:form>
         <table border="0">
             <tr>
@@ -31,13 +37,12 @@
                     <h:selectOneMenu value="#{groupeController.membreId}" converter="javax.faces.Long">
                         <f:selectItems itemLabel="#{musicien}" itemValue="#{musicien.id}" var="musicien" value="#{musicienController.CList}"/>
                     </h:selectOneMenu>
-                    <h:commandButton value="Ajouter" action="#{groupeController.addMembre}"/>
-                    <p>Membres du groupe</p>
-                    <ul>
+                    <h:commandButton value="Ajouter" action="#{groupeController.addMembreEdit}"/>
+                    <ul class="decale">
                         <c:forEach items="#{groupeController.groupe.membres}" var="item">
                         <li>
                             <h:outputText value="#{item}"/>
-                            <h:commandButton value=" Supprimer" action="#{groupeController.removeMembre(item)}"/>
+                            <h:commandButton value=" Supprimer" action="#{groupeController.removeMembreEdit(item)}" styleClass="editButton"/>
                         </li>
                         </c:forEach>
                     </ul>

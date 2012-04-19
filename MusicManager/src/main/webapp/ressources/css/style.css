@@ -139,3 +139,19 @@ div#menu ul li.current {
     width: 60%;
     font-family:'Lemon',cursive;
 }
+
+ul {
+    margin-left: 0px;
+}
+
+ul.decale {
+    margin-left: 10px;
+}
+
+ul li {
+    margin-left: 5px;
+}
+
+ul.decale li {
+    margin-left: 15px;
+}

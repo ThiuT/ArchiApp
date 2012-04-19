@@ -101,6 +101,18 @@ public class GroupeController {
         return "newGroupe.xhtml";
     }
     
+    public String addMembreEdit() {
+        List<Musicien> l = groupe.getMembres();
+        l.add(musicienEJB.findById(membreId));
+        return "editGroupe.xhtml";
+    }
+    
+    public String removeMembreEdit(Musicien m) {
+        List<Musicien> l = groupe.getMembres();
+        l.remove(m);
+        return "editGroupe.xhtml";
+    }
+    
     // ======================================
     // =          Getters & Setters         =
     // ======================================

@@ -18,7 +18,7 @@
 
         <h1>Application Com'Musique</h1>
             
-        <h2>Editer groupe</h2>
+        <h2>Nouveau groupe</h2>
     </div>
     
 
@@ -40,11 +40,11 @@
                         <f:selectItems itemLabel="#{musicien}" itemValue="#{musicien.id}" var="musicien" value="#{musicienController.CList}"/>
                     </h:selectOneMenu>
                     <h:commandButton value="Ajouter" action="#{groupeController.addMembre}"/>
-                    <ul>
+                    <ul class="decale">
                         <c:forEach items="#{groupeController.groupe.membres}" var="item">
                         <li>
                             <h:outputText value="#{item}"/>
-                            <h:commandButton value=" Supprimer" action="#{groupeController.removeMembre(item)}"/>
+                            <h:commandButton value=" Supprimer" action="#{groupeController.removeMembre(item)}" styleClass="editButton"/>
                         </li>
                         </c:forEach>
                     </ul>
